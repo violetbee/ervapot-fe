@@ -12,7 +12,7 @@ const Login = () => {
   const authHandler = async (e: FormEvent) => {
     e.preventDefault();
     const res = await axios.post(
-      "http://localhost:5000/auth/login",
+      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`,
       {
         email,
         password,

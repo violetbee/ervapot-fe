@@ -30,9 +30,13 @@ export const Header = ({ user }: { user: User }) => {
         <IoIosLogOut
           onClick={async (e) => {
             e.preventDefault();
-            await axios.post("http://localhost:5000/auth/logout", undefined, {
-              withCredentials: true,
-            });
+            await axios.post(
+              `${process.env.NEXT_PUBLIC_BASE_URL}/auth/logout`,
+              undefined,
+              {
+                withCredentials: true,
+              }
+            );
             setUser(null);
             redirect("/login");
           }}
