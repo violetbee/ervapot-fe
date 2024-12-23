@@ -3,7 +3,6 @@
 import { useUser } from "@/hooks/useUser";
 import { User } from "@/types/user";
 import axios from "axios";
-import Image from "next/image";
 import { redirect } from "next/navigation";
 import { GoSearch } from "react-icons/go";
 import { IoIosLogOut } from "react-icons/io";

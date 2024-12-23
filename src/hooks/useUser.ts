@@ -4,7 +4,7 @@ import { jwtVerify } from "jose";
 import Cookies from "js-cookie";
 import { useCallback, useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Context, UserContextType } from "@/store/UserContext";
+import { Context } from "@/store/UserContext";
 
 const secretKey = process.env.NEXT_PUBLIC_JWT_SECRET;
 const encodedKey = new TextEncoder().encode(secretKey);

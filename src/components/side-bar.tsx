@@ -1,6 +1,5 @@
 "use client";
 
-import { useUser } from "@/hooks/useUser";
 import { menu } from "@/settings/constants/menu";
 import { UserType } from "@/types/employee";
 import Image from "next/image";
