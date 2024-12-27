@@ -115,7 +115,7 @@ export default function Stocks() {
           stepHandler={stepHandler}
           createStock={createStock}
           setCreateStock={setCreateStock}
-          user={user}
+          user={user!}
           createStockHandler={createStockHandler}
         />
       ) : (
