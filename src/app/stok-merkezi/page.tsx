@@ -7,7 +7,6 @@ import Link from "next/link";
 
 export default function StokMerkezi() {
   const { user } = useUser();
-  console.log(user);
   return (
     <Layout
       title="Stok Merkezi"

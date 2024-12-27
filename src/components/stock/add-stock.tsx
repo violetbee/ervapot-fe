@@ -108,15 +108,19 @@ export default function Stocks() {
         />
       }
     >
-      <CurrentStep
-        inputHandler={inputHandler}
-        products={products}
-        stepHandler={stepHandler}
-        createStock={createStock}
-        setCreateStock={setCreateStock}
-        user={user}
-        createStockHandler={createStockHandler}
-      />
+      {products.length > 0 ? (
+        <CurrentStep
+          inputHandler={inputHandler}
+          products={products}
+          stepHandler={stepHandler}
+          createStock={createStock}
+          setCreateStock={setCreateStock}
+          user={user}
+          createStockHandler={createStockHandler}
+        />
+      ) : (
+        <p>Henüz herhangi bir ürün eklenmedi.</p>
+      )}
     </Box>
   );
 }
