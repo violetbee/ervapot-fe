@@ -26,7 +26,7 @@ export const Layout = ({
     if (user?.role !== "ADMIN" && currentPath !== "/stok-merkezi") {
       router.push("/");
     }
-  }, []);
+  }, [user, currentPath, router]);
 
   return (
     <div className="flex flex-col sm:flex-row md:overflow-hidden">

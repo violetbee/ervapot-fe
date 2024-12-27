@@ -279,6 +279,7 @@ export const Employees = () => {
                       type="password"
                       name="password"
                       id="password"
+                      autoComplete="new-password"
                       className="focus:outline-none border p-2 rounded-md"
                       onChange={employeeActionHandler}
                     />
