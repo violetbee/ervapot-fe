@@ -5,6 +5,7 @@ import { Header } from "./header";
 import { SideBar } from "./side-bar";
 import { useUser } from "@/hooks/useUser";
 import { usePathname, useRouter } from "next/navigation";
+import { UserRole } from "@/types/employee";
 
 export const Layout = ({
   children,
@@ -22,8 +23,11 @@ export const Layout = ({
 
   useEffect(() => {
     if (currentPath === "/") return;
-
-    if (user?.role !== "ADMIN" && currentPath !== "/stok-merkezi") {
+    if (
+      user &&
+      user?.role !== ("ADMIN" as UserRole) &&
+      currentPath !== "/stok-merkezi"
+    ) {
       router.push("/");
     }
   }, [user, currentPath, router]);
@@ -35,7 +39,7 @@ export const Layout = ({
         role="main"
         className="w-full h-full flex-grow overflow-auto space-y-8 md:p-4 px-2 py-4"
       >
-        <Header user={user} />
+        <Header user={user!} />
         <main
           className={`bg-white rounded-md p-4 flex flex-col ${
             title && "divide-y"

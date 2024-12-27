@@ -3,27 +3,33 @@
 import Image from "next/image";
 import { FormEvent, useState } from "react";
 import axios from "axios";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const authHandler = async (e: FormEvent) => {
     e.preventDefault();
-    const res = await axios.post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`,
-      {
-        email,
-        password,
-      },
-      {
-        withCredentials: true,
-      }
-    );
-
-    if (res.status === 200) {
-      redirect("/");
+    try {
+      setIsLoading(true);
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
+      localStorage.setItem("accessToken", res.data.tokens.accessToken);
+      localStorage.setItem("refreshToken", res.data.tokens.refreshToken);
+      toast.success(res.data.message);
+      router.push("/");
+    } catch (err) {
+      toast.error(err?.response?.data?.error);
+      setIsLoading(false);
     }
   };
 
@@ -54,8 +60,9 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button
-          className="mt-4 py-2 hover:bg-indigo-400 hover:text-white duration-200 border-[1px] border-indigo-400 rounded-md"
+          className="mt-4 py-2 hover:bg-indigo-400 hover:text-white duration-200 border-[1px] border-indigo-400 rounded-md disabled:bg-black/[0.1] disabled:border-black/[0.1]"
           type="submit"
+          disabled={isLoading}
         >
           Giriş Yap
         </button>

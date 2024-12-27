@@ -12,7 +12,6 @@ import { Box } from "../box";
 import { usePagination } from "@/hooks/usePagination";
 import Pagination from "../pagination";
 import { days_between, numberSlicer } from "@/utils/tools";
-import { DocumentGenerator } from "../pdf-generator";
 import { pdf } from "@react-pdf/renderer";
 import { SalaryDocumentGenerator } from "../salary-pdf-generator";
 

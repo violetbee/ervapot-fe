@@ -1,14 +1,13 @@
 "use client";
 
 import { useUser } from "@/hooks/useUser";
-import { User } from "@/types/user";
+import { UserType } from "@/types/employee";
 import axios from "axios";
-import { redirect } from "next/navigation";
 import { GoSearch } from "react-icons/go";
 import { IoIosLogOut } from "react-icons/io";
 
-export const Header = ({ user }: { user: User }) => {
-  const { setUser } = useUser();
+export const Header = ({ user }: { user: UserType }) => {
+  const { logout } = useUser();
   return (
     <header className="p-4 bg-white rounded-md flex justify-between">
       <div className="flex min-w-0 items-center">
@@ -32,13 +31,9 @@ export const Header = ({ user }: { user: User }) => {
             e.preventDefault();
             await axios.post(
               `${process.env.NEXT_PUBLIC_BASE_URL}/auth/logout`,
-              undefined,
-              {
-                withCredentials: true,
-              }
+              undefined
             );
-            setUser(null);
-            redirect("/login");
+            logout();
           }}
           size={24}
           className="shrink-0 text-gray-400 cursor-pointer"
